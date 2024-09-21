@@ -1,0 +1,105 @@
+{% extends 'apps/base.html' %}
+
+{% block context %}
+
+    {% load static %}
+
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h3 class="page-title">Students</h3>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Students</li>
+                        </ul>
+                    </div>
+                    <div class="col-auto text-right float-right ml-auto">
+                        <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+                        <a href="{% url 'add-student' %}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-table">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-center mb-0 datatable">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Class</th>
+                                        <th>DOB</th>
+                                        <th>Mobile Number</th>
+                                        <th class="text-right">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for student in students %}
+                                        <tr>
+                                            <td>{{ student.student_id }}</td>
+                                            <td>
+                                                <h2 class="table-avatar">
+                                                    <a href="{% url 'detail-page' student.pk %}"
+                                                       class="avatar avatar-sm mr-2"><img
+                                                            class="avatar-img rounded-circle"
+                                                            src="{{ student.image.url }}"
+                                                            alt="User Image"></a>
+                                                    <a href="{% url 'detail-page' student.pk %}">{{ student.first_name }} {{ student.last_name }}</a>
+                                                </h2>
+                                            </td>
+                                            <td>{{ student.group }}</td>
+                                            <td>{{ student.date_of_birth }}</td>
+                                            <td>{{ student.phone_number }}</td>
+                                            <td class="text-right">
+                                                <div class="actions">
+                                                    <a href="{% url 'update-page' student.pk %}"
+                                                       class="btn btn-sm bg-success-light mr-2">
+                                                        <i class="fas fa-pen"></i>
+                                                    </a>
+                                                    <a href="{% url 'students-list' %}?pk={{ student.pk }}"
+                                                       class="btn btn-sm bg-danger-light">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination">
+                    <div class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                        {% endif %}
+
+                        {% for page in page_obj.paginator.page_range %}
+                            {% if page_obj.number == page %}
+                            	<a style="background: #c82333" href="?page={{ page }}">{{ page }}</a>
+                            {% elif page == page_obj.next_page_number %}
+                                <a href="?page={{ page }}">{{ page }}</a>
+                            {% elif page == page_obj.previous_page_number %}
+                                <a href="?page={{ page }}">{{ page }}</a>
+                            {% endif %}
+                            
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {% include 'apps/parts/footer.html' %}
+    </div>
+
+{% endblock %}

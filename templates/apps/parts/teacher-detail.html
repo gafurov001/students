@@ -1,0 +1,62 @@
+{% extends 'apps/base.html' %}
+
+{% block context %}
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3 class="page-title">Teachers Details</h3>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Teachers</a></li>
+                            <li class="breadcrumb-item active">Teachers Details</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="about-info">
+                                <h4>About Me</h4>
+                                <div class="media mt-3">
+                                    <img src="{{ teacher.image.url }}" class="mr-3" alt="...">
+                                    <div class="media-body">
+                                        <ul>
+                                            <li>
+                                                <span class="title-span">Full Name : </span>
+                                                <span class="info-span">{{ teacher.first_name }} {{ teacher.last_name }}</span>
+                                            </li>
+                                            <li>
+                                                <span class="title-span">Mobile : </span>
+                                                <span class="info-span">+998 {{ teacher.phone_number }}</span>
+                                            </li>
+                                            <li>
+                                                <span class="title-span">Gender : </span>
+                                                <span class="info-span">{{ teacher.gender }}</span>
+                                            </li>
+                                            <li>
+                                                <span class="title-span">DOB : </span>
+                                                <span class="info-span">{{ teacher.date_of_birth }}</span>
+                                            </li>
+                                            <li>
+                                                <span class="title-span">Class : </span>
+                                                <span class="info-span">{{ teacher.group }}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Copyright © 2020 Dreamguys.</p>
+        </footer>
+
+    </div>
+{% endblock %}

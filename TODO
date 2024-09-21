@@ -1,0 +1,1 @@
+form.save(commit=False).type = Users.Type.STUDENT # Typini berib ketish uchun view ichida form_valid ichida yoziladi

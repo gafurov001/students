@@ -1,0 +1,102 @@
+{% extends 'apps/base.html' %}
+
+{% block context %}
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h3 class="page-title">Edit Teachers</h3>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Teachers</a></li>
+                            <li class="breadcrumb-item active">Edit Teachers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="{% url 'teacher-update' teacher.pk %}" method="post"
+                                  enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5 class="form-title"><span>Basic Details</span></h5>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Teacher ID</label>
+                                            <input type="text" class="form-control" name="student_id"
+                                                   value="{{ teacher.student_id }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label>First name</label>
+                                            <input type="text" class="form-control"
+                                                   name="first_name"
+                                                   value="{{ teacher.first_name }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Last name</label>
+                                            <input type="text" class="form-control"
+                                                   name="last_name"
+                                                   value="{{ teacher.last_name }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Gender</label>
+                                            <select class="form-control" name="gender">
+                                                <option>Male</option>
+                                                <option>Female</option>
+                                                <option>Others</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Date of Birth</label>
+                                            <input type="date" class="form-control" name="date_of_birth"
+                                                   value="{{ teacher.date_of_birth|date:'Y-m-d' }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Class</label>
+                                            <input type="text" class="form-control" name="group"
+                                                   value="{{ teacher.group }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Mobile</label>
+                                            <input type="text" class="form-control" name="phone_number" 
+                                                   value="{{ teacher.phone_number }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Image</label>
+                                            <input type="file" class="form-control" name="image"
+                                                   value="{{ teacher.image.url }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

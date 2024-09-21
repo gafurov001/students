@@ -1,0 +1,120 @@
+{% extends 'apps/base.html' %}
+
+{% block context %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card card-table">
+                <div class="page-wrapper">
+                    <div class="content container-fluid">
+                        <div class="page-header">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h3 class="page-title">Add Students</h3>
+                                    <ul class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#">Students</a></li>
+                                        <li class="breadcrumb-item active">Add Students</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form action="{% url 'add-student' %}" method="post"
+                                              enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <input type="text" name="type" hidden value="student">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h5 class="form-title"><span>Student Information</span></h5>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>First Name</label>
+                                                        <input type="text" class="form-control" name="first_name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Last Name</label>
+                                                        <input type="text" class="form-control" name="last_name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Student Id</label>
+                                                        <input type="text" class="form-control" name="user_id">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Gender</label>
+                                                        <select class="form-control" name="gender">
+                                                            <option>Select Gender</option>
+                                                            <option>Female</option>
+                                                            <option>Male</option>
+                                                            <option>Others</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Date of Birth</label>
+                                                        <div>
+                                                            <input type="date" class="form-control"
+                                                                   name="date_of_birth">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Class</label>
+                                                        <input type="text" class="form-control" name="group">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Mobile Number</label>
+                                                        <input type="text" class="form-control" name="phone_number">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Student Image</label>
+                                                        <input type="file" class="form-control" name="image">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Email</label>
+                                                        <input type="email" class="form-control" name="email">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Username</label>
+                                                        <input type="text" class="form-control" name="username">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Password</label>
+                                                        <input type="password" class="form-control" name="password">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

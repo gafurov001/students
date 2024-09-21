@@ -1,0 +1,102 @@
+{% extends 'apps/base.html' %}
+{% block context %}
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h3 class="page-title">Teachers</h3>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Teachers</li>
+                        </ul>
+                    </div>
+                    <div class="col-auto text-right float-right ml-auto">
+                        <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+                        <a href="{% url 'add-teacher' %}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-table">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-center mb-0 datatable">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Class</th>
+                                        <th>Gender</th>
+                                        <th>Mobile Number</th>
+                                        <th class="text-right">Action</th>
+                                    </tr>
+                                    </thead>
+                                    {% for teacher in teachers %}
+                                        <tbody>
+                                        <tr>
+                                            <td>{{ teacher.student_id }}</td>
+                                            <td>
+                                                <h2 class="table-avatar">
+                                                    <a href="{% url 'teacher-detail' teacher.pk %}"
+                                                       class="avatar avatar-sm mr-2"><img
+                                                            class="avatar-img rounded-circle"
+                                                            src="{{ teacher.image.url }}"
+                                                            alt="User Image"></a>
+                                                    <a href="{% url 'teacher-detail' teacher.pk %}">{{ teacher.first_name }} {{ teacher.last_name }}</a>
+                                                </h2>
+                                            </td>
+                                            <td>{{ teacher.group }}</td>
+                                            <td>{{ teacher.gender }}</td>
+                                            <td>{{ teacher.phone_number }}</td>
+                                            <td class="text-right">
+                                                <div class="actions">
+                                                    <a href="{% url 'teacher-update' teacher.pk %}"
+                                                       class="btn btn-sm bg-success-light mr-2">
+                                                        <i class="fas fa-pen"></i>
+                                                    </a>
+                                                    <a href="?pk={{ teacher.pk }}" class="btn btn-sm bg-danger-light">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pagination">
+            <div class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+
+                {% for page in page_obj.paginator.page_range %}
+                    {% if page_obj.number == page %}
+                        <a style="background: #c82333" href="?page={{ page }}">{{ page }}</a>
+                    {% elif page == page_obj.next_page_number %}
+                        <a href="?page={{ page }}">{{ page }}</a>
+                    {% elif page == page_obj.previous_page_number %}
+                        <a href="?page={{ page }}">{{ page }}</a>
+                    {% endif %}
+
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                {% endif %}
+            </div>
+        </div>
+        <footer>
+            <p>Copyright © 2020 Dreamguys.</p>
+        </footer>
+
+    </div>
+{% endblock %}

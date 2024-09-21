@@ -1,0 +1,54 @@
+{% extends 'apps/base.html' %}
+
+{% block context %}
+    {% load static %}
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3 class="page-title">Student Details</h3>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Student</a></li>
+                            <li class="breadcrumb-item active">Student Details</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="about-info">
+                                <h4>About Me</h4>
+                                <div class="media mt-3">
+                                    <img src="{{ student.image.url }}" class="mr-3" alt="...">
+                                    <div class="media-body">
+                                        <ul>
+                                            <li>
+                                                <span class="title-span">Full Name : </span>
+                                                <span class="info-span">{{ student.first_name }} {{ student.last_name }}</span>
+                                            </li>
+                                            <li>
+                                                <span class="title-span">Mobile : </span>
+                                                <span class="info-span">{{ student.phone_number }}</span>
+                                            </li>
+                                            <li>
+                                                <span class="title-span">Gender : </span>
+                                                <span class="info-span">{{ student.gender }}</span>
+                                            </li>
+                                            <li>
+                                                <span class="title-span">DOB : </span>
+                                                <span class="info-span">{{ student.date_of_birth }}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
